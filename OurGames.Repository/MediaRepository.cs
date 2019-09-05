@@ -13,7 +13,7 @@ namespace OurGames.Repository
         {
         }
 
-        public override IEnumerable<Media> GetAll()
+        public override List<Media> GetAll()
         {
             return db.Media.ToList();
         }

@@ -12,12 +12,13 @@ namespace OurGames.Core.Model
         }
 
         public int UsuarioId { get; set; }
-        public string NomeCompleto { get; set; }
+        public string Nome { get; set; }
         public DateTime DataNascimento { get; set; }
         public string Email { get; set; }
         public string Avatar { get; set; }
         public int? NivelAcessoId { get; set; }
         public string Telefone { get; set; }
+        public string Sobrenome { get; set; }
 
         public virtual NivelAcesso NivelAcesso { get; set; }
         public virtual ICollection<Endereco> Endereco { get; set; }

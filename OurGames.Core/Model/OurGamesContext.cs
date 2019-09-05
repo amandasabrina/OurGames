@@ -166,9 +166,14 @@ namespace OurGames.Core.Model
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.NomeCompleto)
+                entity.Property(e => e.Nome)
                     .IsRequired()
-                    .HasMaxLength(100)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Sobrenome)
+                    .IsRequired()
+                    .HasMaxLength(50)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Telefone)

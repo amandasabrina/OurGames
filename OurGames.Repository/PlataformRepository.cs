@@ -13,7 +13,7 @@ namespace OurGames.Repository
         {
         }
 
-        public override IEnumerable<Plataforma> GetAll()
+        public override List<Plataforma> GetAll()
         {
             return db.Plataforma.ToList();
         }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -24,6 +25,14 @@ namespace OurGames.UI
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(
+                    options => {
+                        options.LoginPath = new PathString("/account/login");
+                        options.LogoutPath= new PathString("/account/logout");
+                    }
+                  );
+
             services.AddDbContext<OurGamesContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("OurGamesDB")));
 
@@ -47,6 +56,8 @@ namespace OurGames.UI
 
                 app.UseHsts();
             }
+
+            app.UseAuthentication();
 
             app.UseSession();
 

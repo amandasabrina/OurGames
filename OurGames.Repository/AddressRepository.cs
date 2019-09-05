@@ -13,7 +13,7 @@ namespace OurGames.Repository
         {
         }
 
-        public override IEnumerable<Endereco> GetAll()
+        public override List<Endereco> GetAll()
         {
             return db.Endereco.ToList();
         }

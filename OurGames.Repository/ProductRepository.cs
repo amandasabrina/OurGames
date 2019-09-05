@@ -13,7 +13,7 @@ namespace OurGames.Repository
         {
         }
 
-        public override IEnumerable<Produto> GetAll()
+        public override List<Produto> GetAll()
         {
             return db.Produto.ToList();
         }

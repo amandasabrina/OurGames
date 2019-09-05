@@ -11,7 +11,7 @@ namespace OurGames.Repository
     {
         protected readonly OurGamesContext db;
         public abstract T GetById(int id);
-        public abstract IEnumerable<T> GetAll();
+        public abstract List<T> GetAll();
 
         public AbstractRepository(DbContextOptions<OurGamesContext> contextOptions)
         {

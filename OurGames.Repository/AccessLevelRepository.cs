@@ -13,7 +13,7 @@ namespace OurGames.Repository
         {
         }
 
-        public override IEnumerable<NivelAcesso> GetAll()
+        public override List<NivelAcesso> GetAll()
         {
             return db.NivelAcesso.ToList();
         }

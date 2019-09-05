@@ -1,14 +1,15 @@
-﻿@model IEnumerable<OurGames.Core.Model.Usuario>
+﻿@model IEnumerable<UserViewModel>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <main>
-    <table>
+    <table class="table table-striped">
         <tr>
             <th>Id</th>
             <th>Nome</th>
+            <th>Sobrenome</th>
             <th>Nascimento</th>
             <th>E-mail</th>
             <th>Acesso</th>
@@ -16,11 +17,12 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>@item.UsuarioId</td>
-                <td>@item.NomeCompleto</td>
-                <td>@item.DataNascimento.ToShortDateString()</td>
+                <td>@item.UserId</td>
+                <td>@item.FirstName</td>
+                <td>@item.LastName</td>
+                <td>@item.BirthDate.ToShortDateString()</td>
                 <td>@item.Email</td>
-                <td>@item.NivelAcesso.Descricao</td>
+                <td>@item.AccessLevel.Descricao</td>
             </tr>
         }
     </table>
