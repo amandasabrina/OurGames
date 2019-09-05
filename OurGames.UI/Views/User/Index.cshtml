@@ -1,0 +1,27 @@
+﻿@model IEnumerable<OurGames.Core.Model.Usuario>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Nascimento</th>
+            <th>E-mail</th>
+            <th>Acesso</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.UsuarioId</td>
+                <td>@item.NomeCompleto</td>
+                <td>@item.DataNascimento.ToShortDateString()</td>
+                <td>@item.Email</td>
+                <td>@item.NivelAcesso.Descricao</td>
+            </tr>
+        }
+    </table>
+</main>
