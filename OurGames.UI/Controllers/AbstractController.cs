@@ -1,15 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using OurGames.Core;
+using OurGames.Core.Entity;
 
 namespace OurGames.UI.Controllers
 {
+    //[Authorize]
     public class AbstractController : Controller
     {
-        protected AccessLevel UserAccessLevel => 
-            (AccessLevel)Enum.Parse(typeof(AccessLevel), User.FindFirst("userAccessLevel").Value);
+        protected AccessLevelType UserAccessLevel => 
+            (AccessLevelType)Enum.Parse(typeof(AccessLevelType), User.FindFirst("userAccessLevel").Value);
     }
 }

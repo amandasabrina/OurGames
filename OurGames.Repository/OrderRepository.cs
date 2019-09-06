@@ -7,20 +7,20 @@ using System.Text;
 
 namespace OurGames.Repository
 {
-    public class OrderRepository : AbstractRepository<Pedido>
+    public class OrderRepository : AbstractRepository<Order>
     {
         public OrderRepository(DbContextOptions<OurGamesContext> contextOptions) : base(contextOptions)
         {
         }
 
-        public override List<Pedido> GetAll()
+        public override List<Order> GetAll()
         {
-            return db.Pedido.ToList();
+            return db.Order.ToList();
         }
 
-        public override Pedido GetById(int id)
+        public override Order GetById(int id)
         {
-            return db.Pedido.FirstOrDefault(p => p.PedidoId == id);
+            return db.Order.FirstOrDefault(p => p.OrderId == id);
         }
     }
 }

@@ -28,15 +28,15 @@ namespace OurGames.UI.Models
         [Required]
         public int Number { get; set; }
 
-        public static AddressViewModel Map(Endereco entity)
+        public static AddressViewModel Map(Address entity)
         {
             return new AddressViewModel
             {
-                AddressId = entity.EnderecoId,
+                AddressId = entity.AddressId,
                 CEP = entity.Cep,
-                City = entity.Cidade,
-                Number = entity.Numero,
-                Street = entity.Logradouro,
+                City = entity.City,
+                Number = entity.Number,
+                Street = entity.Street,
                 UF = entity.Uf
             };
         }

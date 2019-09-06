@@ -7,20 +7,20 @@ using System.Text;
 
 namespace OurGames.Repository
 {
-    public class ProductRepository : AbstractRepository<Produto>
+    public class ProductRepository : AbstractRepository<Product>
     {
         public ProductRepository(DbContextOptions<OurGamesContext> contextOptions) : base(contextOptions)
         {
         }
 
-        public override List<Produto> GetAll()
+        public override List<Product> GetAll()
         {
-            return db.Produto.ToList();
+            return db.Product.ToList();
         }
 
-        public override Produto GetById(int id)
+        public override Product GetById(int id)
         {
-            return db.Produto.FirstOrDefault(p => p.ProdutoId == id);
+            return db.Product.FirstOrDefault(p => p.ProductId == id);
         }
     }
 }

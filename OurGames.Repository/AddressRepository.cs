@@ -7,20 +7,20 @@ using System.Text;
 
 namespace OurGames.Repository
 {
-    public class AddressRepository : AbstractRepository<Endereco>
+    public class AddressRepository : AbstractRepository<Address>
     {
         public AddressRepository(DbContextOptions<OurGamesContext> contextOptions) : base(contextOptions)
         {
         }
 
-        public override List<Endereco> GetAll()
+        public override List<Address> GetAll()
         {
-            return db.Endereco.ToList();
+            return db.Address.ToList();
         }
 
-        public override Endereco GetById(int id)
+        public override Address GetById(int id)
         {
-            return db.Endereco.FirstOrDefault(e => e.EnderecoId == id);
+            return db.Address.FirstOrDefault(e => e.AddressId == id);
         }
     }
 }

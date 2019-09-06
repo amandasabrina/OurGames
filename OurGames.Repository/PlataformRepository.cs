@@ -7,20 +7,20 @@ using System.Text;
 
 namespace OurGames.Repository
 {
-    public class PlataformRepository : AbstractRepository<Plataforma>
+    public class PlataformRepository : AbstractRepository<Plataform>
     {
         public PlataformRepository(DbContextOptions<OurGamesContext> contextOptions) : base(contextOptions)
         {
         }
 
-        public override List<Plataforma> GetAll()
+        public override List<Plataform> GetAll()
         {
-            return db.Plataforma.ToList();
+            return db.Plataform.ToList();
         }
 
-        public override Plataforma GetById(int id)
+        public override Plataform GetById(int id)
         {
-            return db.Plataforma.FirstOrDefault(p => p.PlataformaId == id);
+            return db.Plataform.FirstOrDefault(p => p.PlataformId == id);
         }
     }
 }

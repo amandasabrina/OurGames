@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using OurGames.Core;
+using OurGames.Common.Security;
+using OurGames.Core.Entity;
 using OurGames.Core.Model;
 using OurGames.Repository;
 using OurGames.UI.Models;
@@ -13,11 +12,11 @@ namespace OurGames.UI.Controllers
 {
     public class UserController : AbstractController
     {
-        private readonly UserRepository _userRepository;
+        private readonly CustomerRepository _userRepository;
 
         public UserController(DbContextOptions<OurGamesContext> contextOptions)
         {
-            _userRepository = new UserRepository(contextOptions);
+            _userRepository = new CustomerRepository(contextOptions);
         }
 
         public IActionResult Index()
@@ -37,33 +36,39 @@ namespace OurGames.UI.Controllers
             {
                 //TODO: Handle avatar image and save
 
-                var addresses = new List<Endereco>();
+                var (salt, hash) = HMACSHA512Helper.CreateHMACSHA12Hash(model.Password);
+
+                var addresses = new List<Address>();
 
                 if (model.Addresses.Any())
                 {
                     foreach (var address in model.Addresses)
                     {
-                        addresses.Add(new Endereco
+                        addresses.Add(new Address
                         {
                             Cep = address.CEP,
-                            Cidade = address.City,
-                            Logradouro = address.Street,
-                            Numero = address.Number,
+                            City = address.City,
+                            Street = address.Street,
+                            Number = address.Number,
                             Uf = address.UF
                         });
                     }
                 }
 
-                var entity = new Usuario
+                var entity = new Customer
                 {
-                    DataNascimento = model.BirthDate,
+                    BirthDate = model.BirthDate,
                     Email = model.Email,
-                    Endereco = addresses,
+                    Address = addresses,
                     //Avatar = avatarUrl,
-                    NivelAcessoId = UserAccessLevel == AccessLevel.Admin ? 1 : 2,
-                    Nome = model.FirstName,
-                    Sobrenome = model.LastName,
-                    Telefone = model.Phone
+                    AccessLevelId = UserAccessLevel == AccessLevelType.Admin ? 1 : 2,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    Phone = model.Phone,
+                    PasswordSalt = salt,
+                    PasswordHash = hash,
+                    Cpf = model.CPF,
+                    LoginMethodId = (int)LoginMethods.Email
                 };
             }
 

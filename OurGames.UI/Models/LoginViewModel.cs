@@ -9,7 +9,8 @@ namespace OurGames.UI.Models
     public class LoginViewModel
     {
         [Required]
-        public string Login { get; set; }
+        [DataType(DataType.EmailAddress)]
+        public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]

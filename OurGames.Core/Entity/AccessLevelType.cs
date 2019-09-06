@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace OurGames.Core
+namespace OurGames.Core.Entity
 {
-    public enum AccessLevel
+    public enum AccessLevelType
     {
         Admin = 1,
         Client = 2,

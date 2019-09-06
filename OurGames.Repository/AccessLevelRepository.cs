@@ -7,20 +7,20 @@ using System.Text;
 
 namespace OurGames.Repository
 {
-    public class AccessLevelRepository : AbstractRepository<NivelAcesso>
+    public class AccessLevelRepository : AbstractRepository<AccessLevel>
     {
         public AccessLevelRepository(DbContextOptions<OurGamesContext> contextOptions) : base(contextOptions)
         {
         }
 
-        public override List<NivelAcesso> GetAll()
+        public override List<AccessLevel> GetAll()
         {
-            return db.NivelAcesso.ToList();
+            return db.AccessLevel.ToList();
         }
 
-        public override NivelAcesso GetById(int id)
+        public override AccessLevel GetById(int id)
         {
-            return db.NivelAcesso.FirstOrDefault(n => n.NivelAcessoId == id);
+            return db.AccessLevel.FirstOrDefault(n => n.AccessLevelId == id);
         }
     }
 }

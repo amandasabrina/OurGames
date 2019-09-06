@@ -9,7 +9,7 @@ using OurGames.Core.Model;
 
 namespace OurGames.UI.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : AbstractController
     {
         public HomeController(DbContextOptions<OurGamesContext> contextOptions)
         {

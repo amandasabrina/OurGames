@@ -15,14 +15,15 @@ namespace OurGames.Core.Model
         {
         }
 
-        public virtual DbSet<Endereco> Endereco { get; set; }
+        public virtual DbSet<AccessLevel> AccessLevel { get; set; }
+        public virtual DbSet<Address> Address { get; set; }
+        public virtual DbSet<Customer> Customer { get; set; }
+        public virtual DbSet<LoginMethod> LoginMethod { get; set; }
         public virtual DbSet<Media> Media { get; set; }
-        public virtual DbSet<NivelAcesso> NivelAcesso { get; set; }
-        public virtual DbSet<Pedido> Pedido { get; set; }
-        public virtual DbSet<PedidoProduto> PedidoProduto { get; set; }
-        public virtual DbSet<Plataforma> Plataforma { get; set; }
-        public virtual DbSet<Produto> Produto { get; set; }
-        public virtual DbSet<Usuario> Usuario { get; set; }
+        public virtual DbSet<Order> Order { get; set; }
+        public virtual DbSet<OrderProduct> OrderProduct { get; set; }
+        public virtual DbSet<Plataform> Plataform { get; set; }
+        public virtual DbSet<Product> Product { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -35,7 +36,14 @@ namespace OurGames.Core.Model
         {
             modelBuilder.HasAnnotation("ProductVersion", "2.2.0-rtm-35687");
 
-            modelBuilder.Entity<Endereco>(entity =>
+            modelBuilder.Entity<AccessLevel>(entity =>
+            {
+                entity.Property(e => e.Description)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Address>(entity =>
             {
                 entity.Property(e => e.Cep)
                     .IsRequired()
@@ -43,11 +51,11 @@ namespace OurGames.Core.Model
                     .HasMaxLength(9)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Cidade)
+                entity.Property(e => e.City)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Logradouro)
+                entity.Property(e => e.Street)
                     .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
@@ -57,134 +65,150 @@ namespace OurGames.Core.Model
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.Usuario)
-                    .WithMany(p => p.Endereco)
-                    .HasForeignKey(d => d.UsuarioId)
+                entity.HasOne(d => d.Customer)
+                    .WithMany(p => p.Address)
+                    .HasForeignKey(d => d.CustomerId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Endereco__Usuari__4CA06362");
+                    .HasConstraintName("FK__CustomerId__2A164134");
             });
 
-            modelBuilder.Entity<Media>(entity =>
-            {
-                entity.Property(e => e.Endereco)
-                    .IsRequired()
-                    .HasMaxLength(20)
-                    .IsUnicode(false);
-
-                entity.HasOne(d => d.Produto)
-                    .WithMany(p => p.Media)
-                    .HasForeignKey(d => d.ProdutoId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Media__ProdutoId__3E52440B");
-            });
-
-            modelBuilder.Entity<NivelAcesso>(entity =>
-            {
-                entity.Property(e => e.Descricao)
-                    .HasMaxLength(20)
-                    .IsUnicode(false);
-            });
-
-            modelBuilder.Entity<Pedido>(entity =>
-            {
-                entity.Property(e => e.Data).HasColumnType("date");
-
-                entity.HasOne(d => d.Usuario)
-                    .WithMany(p => p.Pedido)
-                    .HasForeignKey(d => d.UsuarioId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Pedido__UsuarioI__5812160E");
-            });
-
-            modelBuilder.Entity<PedidoProduto>(entity =>
-            {
-                entity.HasKey(e => new { e.PedidoId, e.ProdutoId });
-
-                entity.HasOne(d => d.Pedido)
-                    .WithMany(p => p.PedidoProduto)
-                    .HasForeignKey(d => d.PedidoId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__PedidoPro__Pedid__44FF419A");
-
-                entity.HasOne(d => d.Produto)
-                    .WithMany(p => p.PedidoProduto)
-                    .HasForeignKey(d => d.ProdutoId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__PedidoPro__Produ__45F365D3");
-            });
-
-            modelBuilder.Entity<Plataforma>(entity =>
-            {
-                entity.Property(e => e.Nome)
-                    .HasMaxLength(20)
-                    .IsUnicode(false);
-            });
-
-            modelBuilder.Entity<Produto>(entity =>
-            {
-                entity.Property(e => e.Categoria)
-                    .IsRequired()
-                    .HasMaxLength(30)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Classificacao)
-                    .IsRequired()
-                    .HasMaxLength(5)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Lancamento).HasColumnType("date");
-
-                entity.Property(e => e.Nome)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Requisitos)
-                    .HasMaxLength(200)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Sinopse)
-                    .HasMaxLength(500)
-                    .IsUnicode(false);
-
-                entity.HasOne(d => d.Plataforma)
-                    .WithMany(p => p.Produto)
-                    .HasForeignKey(d => d.PlataformaId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Produto__Platafo__3B75D760");
-            });
-
-            modelBuilder.Entity<Usuario>(entity =>
+            modelBuilder.Entity<Customer>(entity =>
             {
                 entity.Property(e => e.Avatar)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.DataNascimento).HasColumnType("date");
+                entity.Property(e => e.BirthDate).HasColumnType("date");
+
+                entity.Property(e => e.Cpf)
+                    .IsRequired()
+                    .HasColumnName("CPF")
+                    .HasMaxLength(11)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Email)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Nome)
+                entity.Property(e => e.FirstName)
                     .IsRequired()
-                    .HasMaxLength(50)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Sobrenome)
+                entity.Property(e => e.LastName)
                     .IsRequired()
-                    .HasMaxLength(50)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Telefone)
-                    .IsRequired()
+                entity.Property(e => e.PasswordHash).HasMaxLength(64);
+
+                entity.Property(e => e.PasswordSalt).HasMaxLength(128);
+
+                entity.Property(e => e.Phone)
                     .HasMaxLength(15)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.NivelAcesso)
-                    .WithMany(p => p.Usuario)
-                    .HasForeignKey(d => d.NivelAcessoId)
-                    .HasConstraintName("FK__Usuario__NivelAc__4316F928");
+                entity.HasOne(d => d.AccessLevel)
+                    .WithMany(p => p.Customer)
+                    .HasForeignKey(d => d.AccessLevelId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Customer__Acces__1DB06A4F");
+
+                entity.HasOne(d => d.LoginMethod)
+                    .WithMany(p => p.Customer)
+                    .HasForeignKey(d => d.LoginMethodId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Customer__Login__1CBC4616");
+            });
+
+            modelBuilder.Entity<LoginMethod>(entity =>
+            {
+                entity.Property(e => e.Description)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Media>(entity =>
+            {
+                entity.Property(e => e.MediaUrl)
+                    .IsRequired()
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.Product)
+                    .WithMany(p => p.Media)
+                    .HasForeignKey(d => d.ProductId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Media__ProductId__160F4887");
+            });
+
+            modelBuilder.Entity<Order>(entity =>
+            {
+                entity.Property(e => e.OrderDate).HasColumnType("date");
+
+                entity.HasOne(d => d.Customer)
+                    .WithMany(p => p.Order)
+                    .HasForeignKey(d => d.CustomerId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Customer__CustomerId__236943A5");
+            });
+
+            modelBuilder.Entity<OrderProduct>(entity =>
+            {
+                entity.HasKey(e => new { e.OrderId, e.ProductId })
+                    .HasName("PK_OrderProcuct");
+
+                entity.HasOne(d => d.Order)
+                    .WithMany(p => p.OrderProduct)
+                    .HasForeignKey(d => d.OrderId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__OrderProd__Order__2645B050");
+
+                entity.HasOne(d => d.Product)
+                    .WithMany(p => p.OrderProduct)
+                    .HasForeignKey(d => d.ProductId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__OrderProd__Produ__2739D489");
+            });
+
+            modelBuilder.Entity<Plataform>(entity =>
+            {
+                entity.Property(e => e.PlataformName)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Product>(entity =>
+            {
+                entity.Property(e => e.Category)
+                    .IsRequired()
+                    .HasMaxLength(30)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.LaunchDate).HasColumnType("date");
+
+                entity.Property(e => e.ProductName)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Ranking)
+                    .IsRequired()
+                    .HasMaxLength(5)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Requirements)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Synopsis)
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.Plataform)
+                    .WithMany(p => p.Product)
+                    .HasForeignKey(d => d.PlataformId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Product__Platafo__1332DBDC");
             });
 
             OnModelCreatingPartial(modelBuilder);

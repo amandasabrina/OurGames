@@ -35,21 +35,29 @@ namespace OurGames.UI.Models
         [Required]
         public DateTime BirthDate { get; set; }
         public List<AddressViewModel> Addresses { get; set; }
-        public NivelAcesso AccessLevel { get; set; }
+        public AccessLevel AccessLevel { get; set; }
 
-        public static UserViewModel Map(Usuario entity)
+        [Required]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
+
+        [Required]
+        [MaxLength(11)]
+        public string CPF { get; set; }
+
+        public static UserViewModel Map(Customer entity)
         {
             return new UserViewModel
             {
-                UserId = entity.UsuarioId,
-                AccessLevel = entity.NivelAcesso,
-                Addresses = entity.Endereco.ToList().ConvertAll(e => AddressViewModel.Map(e)),
+                UserId = entity.CustomerId,
+                AccessLevel = entity.AccessLevel,
+                Addresses = entity.Address.ToList().ConvertAll(e => AddressViewModel.Map(e)),
                 AvatarUrl = entity.Avatar,
-                BirthDate = entity.DataNascimento,
+                BirthDate = entity.BirthDate,
                 Email = entity.Email,
-                FirstName = entity.Nome,
-                LastName = entity.Sobrenome,
-                Phone = entity.Telefone
+                FirstName = entity.FirstName,
+                LastName = entity.LastName,
+                Phone = entity.Phone
             };
         }
     }   
