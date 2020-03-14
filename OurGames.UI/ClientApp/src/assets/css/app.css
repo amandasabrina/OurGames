@@ -1,0 +1,218 @@
+
+.menu-background{
+    background-color:#2a2a2a;
+    /* background-color:#f1f1f1; */
+}
+
+.elevation{
+    box-shadow: 0 0px 10px 0px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0 0px 10px 0px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 0 0px 10px 0px rgba(0, 0, 0, 0.5);
+    -o-box-shadow: 0 0px 10px 0px rgba(0, 0, 0, 0.5);
+    -ms-box-shadow: 0 0px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+.nav-link{
+    color: rgba(255, 255, 255, 0.5);
+    /* color: rgba(0, 0, 0, 0.5); */
+}
+.nav-link:hover{
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.menu-right-actions{
+    display: flex;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+html, body, #root, #root > div {
+    height: auto
+  }
+
+  #root{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+footer {
+    /* background-color: #f1f1f1;   */
+    background-color: #2a2a2a;
+    position: static;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.bg-gray{
+    background-color: rgba(0, 0, 0, 0.02)
+}
+
+.textPrimary{
+    color: rgba(255, 255, 255, 0.6)
+}
+
+.textSecondary{
+    color: rgba(255, 255, 255, 0.3)
+}
+
+.link-text{
+  cursor: pointer !important;
+  color: #3f51b5 !important
+}
+
+.link-text:hover{
+  text-decoration: underline !important;
+}
+
+/* Underline From Left */
+.hvr-underline-from-left {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    position: relative;
+    overflow: hidden;
+  }
+  .hvr-underline-from-left:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    right: 100%;
+    bottom: 0;
+    background: #9499d8 /*#2098D1*/;
+    height: 4px;
+    -webkit-transition-property: right;
+    transition-property: right;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+  }
+  .hvr-underline-from-left:hover:before, .hvr-underline-from-left:focus:before, .hvr-underline-from-left:active:before {
+    right: 0;
+  }
+
+  .hvr-underline-active:before{
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #9499d8 /*#2098D1*/;
+    height: 4px;
+  }
+
+  /* Flex styles -------------------------------------------------*/
+header {
+    display: flex;
+    align-items: center;
+  }
+  
+  @media (min-width: 700px) {
+   .leading {
+      display: flex;
+      align-items: center;
+    }
+  }
+  
+  
+  .games-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-gap: 30px;
+    margin: 2em 1em;
+  }
+
+  .games-list-item {
+    position: relative;
+  }
+  
+  .card-media {
+    height: 60vh;
+    width: 100%;
+    background-size: cover !important;
+    /* object-fit: cover; */
+  }  
+
+  .MuiCardHeader-content{
+      overflow: hidden;
+  }
+
+
+  .MuiCardHeader-subheader{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .card-container{
+    height: 100%;
+    display: flex;
+    align-self: center;
+    width: 100%;
+  }
+
+  main{
+    display: flex;
+    flex: 1;
+  }
+
+  .gamecard > :first-child{
+    overflow: hidden;
+    }
+
+  .gamecard:hover > div > img {
+    transition: .2s;
+    transform: scale(1.1);
+    cursor: pointer;    
+}
+
+
+.sidebar-sticky{
+  position: sticky;
+  -webkit-position: sticky;
+  top: 166px;
+}
+
+
+.li-action{
+  cursor: pointer;
+  -webkit-transition: 0.2s ease-out;
+  -moz-transition: 0.2s ease-out;
+  -o-transition: 0.2s ease-out;
+  -ms-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
+}
+
+
+
+.li-action:hover{
+  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.06), 
+  0 2px 6px 0 rgba(0, 0, 0, 0.03);
+  border-left: 2px solid #9499d8;
+
+}
+
+.li-action.active{
+  border-left: 2px solid #9499d8;
+  background-color: rgba(0, 0, 0, 0.02)
+}
+
+.bg-ps4{
+background-color: rgb(0, 112, 209) !important;;
+}
+
+.bg-xbox{
+background-color: #107c10 !important;
+}
+
+.bg-pc{
+  background-color: rgba(0, 0, 0, 0.8) !important;
+
+}

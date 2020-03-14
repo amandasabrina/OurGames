@@ -1,0 +1,73 @@
+﻿{
+   "ContextClassName": "OurGamesContext",
+   "ContextNamespace": null,
+   "DefaultDacpacSchema": null,
+   "DoNotCombineNamespace": false,
+   "IdReplace": false,
+   "IncludeConnectionString": false,
+   "ModelNamespace": null,
+   "OutputContextPath": null,
+   "OutputPath": "Model",
+   "ProjectRootNamespace": "OurGames.Core.Model",
+   "SelectedHandlebarsLanguage": 0,
+   "SelectedToBeGenerated": 0,
+   "Tables": [
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[AccessLevel]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[Category]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[CategoryGame]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[Customer]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[CustomerFavorite]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[CustomerGame]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[Game]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[Invite]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[Media]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[Order]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[PasswordRequest]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[Plataform]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[PlataformGame]"
+      }
+   ],
+   "UseDatabaseNames": false,
+   "UseFluentApiOnly": true,
+   "UseHandleBars": false,
+   "UseInflector": false,
+   "UseLegacyPluralizer": false
+}
